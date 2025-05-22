@@ -126,6 +126,16 @@ function setLanguage(lang) {
         el.innerHTML = `<span class="material-symbols-outlined">${t.linkIcons[idx]}</span> ${t.linkLabels[idx]}`;
     });
     updateAdaptiveLinks(lang);
+
+    const i18ns = Array(...document.querySelectorAll('[i18n]'));
+    for (const i18n of i18ns) {
+        try {
+            const data = JSON.parse( i18n.getAttribute('i18n') );
+            i18n.innerText = data[lang] ?? data['pt-BR']
+        } catch (error) {
+            
+        }
+    }
 }
 
 async function loadGitHubProjects() {
@@ -138,7 +148,7 @@ async function loadGitHubProjects() {
         const container = document.getElementById("github-projects");
         container.innerHTML = "";
 
-        repos.slice(0, 6).forEach(repo => {
+        repos.filter(repo=>repo.name!=="website").slice(0, 6).forEach(repo => {
             const project = document.createElement("div");
             project.style.marginBottom = "1.5rem";
             project.innerHTML = `
@@ -183,7 +193,7 @@ async function loadPodcast() {
                         <source src="${item.enclosure.link}" type="${item.enclosure.type}">
                         Seu navegador não suporta áudio embutido.
                     </audio>
-                    <a href="${item.link}" target="_blank">Ouvir Completo</a>
+                    <a href="${item.link}" target="_blank" i18n="{'pt-BR':'Ouvir Completo', 'en': 'Listen to Full Episode', 'es': 'Escuchar completo'}">Ouvir Completo</a>
                     <div class="player"><div class="player-progress"></div></div>
                 `;
                 card.style.backgroundImage = `url(${item.enclosure.image})`
