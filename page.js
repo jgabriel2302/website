@@ -130,9 +130,10 @@ function setLanguage(lang) {
     const i18ns = Array(...document.querySelectorAll('[i18n]'));
     for (const i18n of i18ns) {
         try {
-            const data = JSON.parse( i18n.getAttribute('i18n') );
+            const data = new Function(`return ${i18n.getAttribute('i18n')};`)();
             i18n.innerText = data[lang] ? data[lang]: data['pt-BR']
         } catch (error) {
+            i18n.innerText = "..."
             console.log(error, i18n.getAttribute('i18n'));
         }
     }
