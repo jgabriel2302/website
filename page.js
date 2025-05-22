@@ -193,10 +193,12 @@ async function loadPodcast() {
                         <source src="${item.enclosure.link}" type="${item.enclosure.type}">
                         Seu navegador não suporta áudio embutido.
                     </audio>
-                    <a href="${item.link}" target="_blank" i18n="{\"pt-BR\":\"Ouvir Completo\", \"en\": \"Listen to Full Episode\", \"es\": \"Escuchar completo\"}">Ouvir Completo</a>
+                    <a href="${item.link}" target="_blank" i18n="{}">Ouvir Completo</a>
                     <div class="player"><div class="player-progress"></div></div>
                 `;
                 card.style.backgroundImage = `url(${item.enclosure.image})`
+
+                card.querySelector('a').setAttribute('i18n', JSON.stringify({"pt-BR":"Ouvir Completo", "en": "Listen to Full Episode", "es": "Escuchar completo"}))
 
                 const audio = card.querySelector('audio');
                 const playBtn = card.querySelector('.play-button');
