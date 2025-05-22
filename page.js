@@ -133,7 +133,7 @@ function setLanguage(lang) {
             const data = JSON.parse( i18n.getAttribute('i18n') );
             i18n.innerText = data[lang] ? data[lang]: data['pt-BR']
         } catch (error) {
-            console.log(error);
+            console.log(error, i18n.getAttribute('i18n'));
         }
     }
 }
@@ -193,7 +193,7 @@ async function loadPodcast() {
                         <source src="${item.enclosure.link}" type="${item.enclosure.type}">
                         Seu navegador não suporta áudio embutido.
                     </audio>
-                    <a href="${item.link}" target="_blank" i18n="{'pt-BR':'Ouvir Completo', 'en': 'Listen to Full Episode', 'es': 'Escuchar completo'}">Ouvir Completo</a>
+                    <a href="${item.link}" target="_blank" i18n="{\"pt-BR\":\"Ouvir Completo\", \"en\": \"Listen to Full Episode\", \"es\": \"Escuchar completo\"}">Ouvir Completo</a>
                     <div class="player"><div class="player-progress"></div></div>
                 `;
                 card.style.backgroundImage = `url(${item.enclosure.image})`
