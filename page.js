@@ -6,6 +6,18 @@ function updateAdaptiveLinks(lang) {
         'es': 'https://amazon.es'
     };
 
+    const bookCovers = {
+        'pt-BR': '/book-cover.jpg',
+        'en': '/book-cover2.jpg',
+        'es': '/book-cover2.jpg'
+    };
+
+    const bookLinks = {
+        'pt-BR': 'https://www.amazon.com.br/Que-Os-Dados-N%C3%A3o-Dizem-ebook/dp/B0F3VKYWFN',
+        'en': 'https://www.amazon.com/What-Data-Dont-Tell-You-ebook/dp/B0FDWTZ7VP',
+        'es': 'https://www.amazon.com/What-Data-Dont-Tell-You-ebook/dp/B0FDWTZ7VP'
+    };
+
     const localeParam = {
         'pt-BR': 'pt_BR',
         'en': 'en_US',
@@ -14,6 +26,8 @@ function updateAdaptiveLinks(lang) {
 
     document.getElementById('linkedin-link').href = `https://linkedin.com/in/joão-gabriel-corrêa-da-silva?locale=${localeParam[lang]}`;
     document.getElementById('amazon-link').href = `${amazonBase[lang]}/stores/author/B0F221J937`;
+    document.getElementById('book-link').href = bookLinks[lang];
+    document.getElementById('book-cover-img').src = bookCovers[lang];
 }
 
 const translations = {
@@ -275,3 +289,4 @@ window.addEventListener('scroll', function () {
     }
 
 });
+
