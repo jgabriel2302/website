@@ -253,9 +253,10 @@ async function loadPodcast() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    const lang = (navigator.language || 'pt-BR').substring(0, 2);
+    const pageParams = new URL(window.location.href).searchParams;
+    const lang = pageParams.has('locale')? pageParams.get('locale'): (navigator.language || 'pt-BR').substring(0, 2);
     const supported = ['pt', 'en', 'es'];
-    const selectedLang = supported.includes(lang) ? lang === 'pt' ? 'pt-BR' : lang : 'pt-BR';
+    const selectedLang = supported.includes(lang) ? lang === 'pt' ? 'pt-BR' : lang : 'en';
     document.getElementById('language-select').value = selectedLang;
     setLanguage(selectedLang);
 
@@ -289,4 +290,5 @@ window.addEventListener('scroll', function () {
     }
 
 });
+
 
