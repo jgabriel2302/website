@@ -1,91 +1,631 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>João Gabriel Corrêa da Silva | Dados, Decisões e Criatividade</title>
-    <link rel="stylesheet" href="/style.css">
-    <script src="page.js"></script>
-    <link rel="shortcut icon" href="/icon.png" type="image/png">
-    <meta name="description" content="Da engenharia à criatividade: dados viram decisões, tecnologia vira impacto. Conheça os projetos, conteúdos e soluções de João Gabriel Corrêa da Silva.">
-    <meta property="og:title" content="João Gabriel Corrêa da Silva">
-    <meta property="og:description" content="Da engenharia à criatividade: dados viram decisões, tecnologia vira impacto.">
-    <meta property="og:image" content="https://joaogabrielcorreadasilva.com.br/profile.jfif">
-    <meta property="og:url" content="https://joaogabrielcorreadasilva.com.br">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="João Gabriel Corrêa da Silva">
-    <meta name="twitter:description" content="Da engenharia à criatividade: dados viram decisões, tecnologia vira impacto.">
-    <meta name="twitter:image" content="https://joaogabrielcorreadasilva.com.br/profile.jfif">
-
-</head>
-
-<body>
-    <div class="language-selector">
-        <select id="language-select" onchange="setLanguage(this.value)">
-            <option value="pt-BR">Português</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-        </select>
-    </div>
-
-    <header>
-        <img loading="lazy" id="parallax" src="/cover.jfif" class="parallax" alt="Be The Change | João Gabriel Corrêa da Silva" />
-        <h1>João Gabriel Corrêa da Silva</h1>
-        <p id="subtitle">Analista de Custos & Performance | Criador de Conteúdo | Inovador</p>
-        <div class="links">
-            <a id="linkedin-link" href="https://linkedin.com/in/joão-gabriel-corrêa-da-silva" target="_blank"></a>
-            <a href="https://creators.spotify.com/pod/profile/bytes-estrat-joao-gabriel" target="_blank"></a>
-            <a href="https://instagram.com/thejoaogabriel" target="_blank"></a>
-            <a href="https://tiktok.com/@thejoaogabriel0" target="_blank"></a>
-            <a id="amazon-link" href="https://amazon.com.br/stores/author/B0F221J937" target="_blank"></a>
-            <a href="https://www.youtube.com/@JoaoGabriel-Correa" target="_blank"></a>
-            <a href="https://github.com/jgabriel2302" target="_blank"></a>
-        </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0c0e" />
+    <title>João Gabriel Corrêa da Silva | Dados, decisões e criatividade</title>
+    <meta
+      name="description"
+      content="Engenharia, dados e criatividade. Conheça os livros, o podcast e os projetos de João Gabriel Corrêa da Silva."
+    />
+    <link rel="canonical" href="https://www.joaogabrielcorreadasilva.com.br/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta
+      property="og:title"
+      content="João Gabriel Corrêa da Silva | Dados, decisões e criatividade"
+    />
+    <meta
+      property="og:description"
+      content="Livros, conversas e projetos para transformar dados em decisões."
+    />
+    <meta
+      property="og:url"
+      content="https://www.joaogabrielcorreadasilva.com.br/"
+    />
+    <meta
+      property="og:image"
+      content="https://www.joaogabrielcorreadasilva.com.br/assets/social-cover.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Livros de João Gabriel Corrêa da Silva sobre dados e storytelling"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="João Gabriel Corrêa da Silva | Dados, decisões e criatividade"
+    />
+    <meta
+      name="twitter:description"
+      content="Livros, conversas e projetos para transformar dados em decisões."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.joaogabrielcorreadasilva.com.br/assets/social-cover.jpg"
+    />
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
+    <link
+      rel="preload"
+      href="assets/poppins-800.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="page.js"></script>
+    <script defer src="js/scroll.js"></script>
+    <script type="module" src="js/scene3d.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "João Gabriel Corrêa da Silva",
+        "url": "https://www.joaogabrielcorreadasilva.com.br/",
+        "image": "https://www.joaogabrielcorreadasilva.com.br/assets/profile.webp",
+        "sameAs": [
+          "https://github.com/jgabriel2302",
+          "https://www.linkedin.com/in/jo%C3%A3o-gabriel-corr%C3%AAa-da-silva",
+          "https://www.instagram.com/thejoaogabriel"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <noscript
+      ><style>
+        .feed-state,
+        .scene-arrows,
+        .language-picker,
+        .book-switch,
+        .edition-switch {
+          display: none;
+        }
+      </style></noscript
+    >
+    <a class="skip-link" href="#home" data-scene="0" data-i18n="skip"
+      >Ir para o conteúdo</a
+    >
+    <div class="ambient" aria-hidden="true"></div>
+    <canvas id="scene-canvas" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <a
+        class="wordmark"
+        href="#home"
+        data-scene="0"
+        aria-label="João Gabriel — início"
+        >JG<span>.</span></a
+      >
+      <nav
+        class="main-nav"
+        aria-label="Navegação principal"
+        data-i18n-aria="navigation"
+      >
+        <a href="#home" data-scene="0" data-i18n="home" aria-current="page"
+          >Início</a
+        ><a href="#book" data-scene="1" data-i18n="books">Livros</a
+        ><a href="#bio" data-scene="2" data-i18n="about">Sobre</a
+        ><a href="#podcast" data-scene="3">Podcast</a
+        ><a href="#github" data-scene="4" data-i18n="projects">Projetos</a
+        ><a href="#connect" data-scene="5" data-i18n="connect">Conectar</a>
+      </nav>
+      <label class="language-picker"
+        ><span class="sr-only" data-i18n="language">Idioma</span
+        ><select id="language-select">
+          <option value="pt-BR">PT</option>
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+        </select></label
+      >
     </header>
-    <main>
-        <section id="bio">
-            <h2 id="title-about"></h2>
-            <div class="bio-container">
-                <img loading="lazy" src="/profile.jfif" alt="Foto de João Gabriel" />
-                <p id="bio-text"></p>
-            </div>
-            <div id="quote1-text" class="quote"></div>
-        </section>
-        <section id="book">
-            <h2 id="title-book"></h2>
-            <div class="book-content">
-                <div class="book-cover">
-                    <img id="book-cover-img" loading="lazy" src="/book-cover.jpg" alt="Book Cover | Capa do Livro" />
-                    <a class="button" id="book-link" href="https://www.amazon.com.br/Que-Os-Dados-N%C3%A3o-Dizem-ebook/dp/B0F3VKYWFN" target="_blank" i18n="{'pt-BR':'Começar a ler!', 'en': 'Read now!', 'es': 'Leer ahora!'}" ></a>
+    <main id="journey">
+      <div class="scene-viewport">
+        <div id="scene-track">
+          <section
+            id="home"
+            class="scene hero-scene"
+            aria-labelledby="hero-name"
+            tabindex="-1"
+          >
+            <div class="scene-content hero-layout">
+              <div class="hero-copy">
+                <p class="eyebrow">
+                  <span class="status-dot"></span
+                  ><span data-i18n="heroEyebrow"
+                    >ENGENHARIA · DADOS · CRIATIVIDADE</span
+                  >
+                </p>
+                <h1 id="hero-name">
+                  João Gabriel<span
+                    >Corrêa da Silva<span class="yellow">.</span></span
+                  >
+                </h1>
+                <p class="hero-statement" data-i18n="heroStatement">
+                  Dados viram decisões.<br />Tecnologia vira impacto.
+                </p>
+                <p class="hero-description" data-i18n="heroDescription">
+                  Exploro o encontro entre análise e criatividade. E compartilho
+                  o que aprendo em livros, conversas e código.
+                </p>
+                <div class="actions">
+                  <a href="#book" data-scene="1" class="button primary"
+                    ><span data-i18n="discoverBooks">Conheça os livros</span
+                    ><span aria-hidden="true">↗</span></a
+                  ><a href="#bio" data-scene="2" class="text-link"
+                    ><span data-i18n="myStory">Minha trajetória</span
+                    ><span aria-hidden="true">→</span></a
+                  >
                 </div>
-                <div id="title-book-description"></div>
+                <div class="hero-footnote">
+                  <span>BE THE CHANGE</span><span class="short-rule"></span
+                  ><span data-i18n="heroFootnote"
+                    >Curiosidade em movimento.</span
+                  >
+                </div>
+              </div>
+              <div class="hero-art">
+                <span class="orbit orbit-one" aria-hidden="true"></span
+                ><span class="orbit orbit-two" aria-hidden="true"></span>
+                <a
+                  class="book-stage hero-book-stage"
+                  href="#book"
+                  data-scene="1"
+                  aria-label="Conheça os livros"
+                  data-i18n-aria="discoverBooks"
+                >
+                  <div class="css-book secondary-book" aria-hidden="true">
+                    <img
+                      id="hero-secondary-cover"
+                      src="assets/book-story-en-current.webp"
+                      alt=""
+                      width="349"
+                      height="500"
+                    />
+                  </div>
+                  <div class="css-book primary-book">
+                    <img
+                      id="hero-cover"
+                      src="assets/book-story-pt.webp"
+                      alt="O que os dados não dizem"
+                      width="673"
+                      height="1001"
+                      fetchpriority="high"
+                    />
+                  </div>
+                </a>
+                <div class="art-caption">
+                  <span class="caption-index">01 / 02</span
+                  ><span data-i18n="artCaption"
+                    >Além dos números.<br />Dentro das histórias.</span
+                  ><span aria-hidden="true">↗</span>
+                </div>
+              </div>
             </div>
-            <br>
-            <div id="quote2-text" class="quote"></div>
-        </section>
-    
-        <section id="podcast">
-            <h2 id="title-podcast"></h2>
-            <div id="podcast-carousel" class="carousel">
-                <p>Carregando episódios...</p>
+          </section>
+          <section
+            id="book"
+            class="scene book-scene"
+            aria-labelledby="title-books"
+            tabindex="-1"
+          >
+            <div class="scene-content books-layout">
+              <div class="book-visual">
+                <p class="eyebrow">
+                  <span class="section-index">01</span
+                  ><span data-i18n="booksEyebrow">IDEIAS NO PAPEL</span>
+                </p>
+                <div class="book-stage detail-book-stage">
+                  <div class="css-book detail-book">
+                    <img
+                      id="book-cover-img"
+                      src="assets/book-story-pt.webp"
+                      alt="O que os dados não dizem"
+                      width="673"
+                      height="1001"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <p id="edition-note" class="edition-note">
+                  Edição em português
+                </p>
+              </div>
+              <div class="book-copy">
+                <div class="section-topline">
+                  <h2 id="title-books" class="small-heading" data-i18n="books">
+                    Livros
+                  </h2>
+                  <span data-i18n="booksCount"
+                    >Duas perspectivas. Um universo de dados.</span
+                  >
+                </div>
+                <div
+                  class="book-switch"
+                  role="group"
+                  aria-label="Escolha um livro"
+                  data-i18n-aria="chooseBook"
+                >
+                  <button type="button" data-book="story" aria-pressed="true">
+                    01 <span data-i18n="storyTab">Storytelling</span></button
+                  ><button
+                    type="button"
+                    data-book="analysis"
+                    aria-pressed="false"
+                  >
+                    02 <span data-i18n="analysisTab">Análise de dados</span>
+                  </button>
+                </div>
+                <div class="book-details" aria-live="polite" aria-atomic="true">
+                  <p id="book-category" class="eyebrow yellow">
+                    DADOS · NARRATIVA · INFLUÊNCIA
+                  </p>
+                  <h3 id="book-title">
+                    O que os dados<br />não dizem<span class="yellow">.</span>
+                  </h3>
+                  <p id="book-subtitle" class="book-subtitle">
+                    E por que você precisa aprender a contar
+                  </p>
+                  <p id="book-description">
+                    Transforme análises em decisões, dashboards em narrativas e
+                    relatórios em impacto real. Um guia para comunicar o que os
+                    números, sozinhos, não conseguem dizer.
+                  </p>
+                  <p class="list-label" data-i18n="learn">
+                    O QUE VOCÊ VAI EXPLORAR
+                  </p>
+                  <ul id="book-learnings" class="learning-list">
+                    <li>Narrativas que engajam e convencem</li>
+                    <li>Visualização e comunicação com dados</li>
+                    <li>Persuasão para públicos estratégicos</li>
+                  </ul>
+                </div>
+                <div class="book-purchase">
+                  <div
+                    class="edition-switch"
+                    role="group"
+                    aria-label="Idioma do livro"
+                    data-i18n-aria="editionLanguage"
+                  >
+                    <button type="button" data-edition="pt" aria-pressed="true">
+                      Português</button
+                    ><button
+                      type="button"
+                      data-edition="en"
+                      aria-pressed="false"
+                    >
+                      English
+                    </button>
+                  </div>
+                  <a
+                    id="book-link"
+                    class="button primary"
+                    href="https://www.amazon.com.br/dp/B0F3VKYWFN"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><span data-i18n="amazon">Ver na Amazon</span
+                    ><span aria-hidden="true">↗</span></a
+                  >
+                </div>
+                <noscript
+                  ><p>
+                    <a href="https://www.amazon.com.br/dp/B0H1T1PMW9"
+                      >What the Data Don't Tell You (English)</a
+                    >
+                    ·
+                    <a href="https://www.amazon.com.br/dp/B0DZNB1LM8"
+                      >Análise de Dados (Português)</a
+                    >
+                    ·
+                    <a href="https://www.amazon.com/dp/B0F1DB4QBJ"
+                      >Data Analysis (English)</a
+                    >
+                  </p></noscript
+                >
+              </div>
             </div>
-        </section>
-    
-        <section id="github">
-            <h2 id="title-github"></h2>
-            <div id="github-projects">
-                <p>Carregando repositórios...</p>
+          </section>
+          <section
+            id="bio"
+            class="scene"
+            aria-labelledby="title-about"
+            tabindex="-1"
+          >
+            <div class="scene-content about-layout">
+              <div class="portrait-wrap">
+                <img
+                  src="assets/profile.webp"
+                  alt="João Gabriel falando ao microfone"
+                  data-i18n-alt="portraitAlt"
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                /><span class="portrait-tag">BE THE CHANGE ↗</span>
+              </div>
+              <div class="about-copy">
+                <p class="eyebrow">
+                  <span class="section-index">02</span
+                  ><span data-i18n="aboutEyebrow">POR TRÁS DOS DADOS</span>
+                </p>
+                <h2 id="title-about" data-i18n="aboutHeading">
+                  Engenheiro por formação.<br />Curioso por natureza<span
+                    class="yellow"
+                    >.</span
+                  >
+                </h2>
+                <p data-i18n="bio">
+                  Sou João Gabriel, engenheiro, autor e profissional de dados e
+                  inteligência artificial. Minha trajetória conecta performance
+                  industrial, finanças e tecnologia — sempre com o olhar voltado
+                  para problemas reais.
+                </p>
+                <p data-i18n="bioSecond">
+                  Acredito que conhecimento ganha valor quando é compartilhado.
+                  Por isso, escrevo, desenvolvo projetos e abro conversas sobre
+                  como transformar análise em ação.
+                </p>
+                <blockquote data-i18n="quote">
+                  “Apaixonado por resolver problemas com dados, tecnologia e
+                  propósito.”
+                </blockquote>
+                <div class="expertise">
+                  <span data-i18n="expertiseData">Ciência de dados</span
+                  ><span data-i18n="expertiseAI">Inteligência artificial</span
+                  ><span>Storytelling</span>
+                </div>
+              </div>
             </div>
-        </section>
+          </section>
+          <section
+            id="podcast"
+            class="scene"
+            aria-labelledby="title-podcast"
+            tabindex="-1"
+          >
+            <div class="scene-content podcast-layout">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">
+                    <span class="section-index">03</span
+                    ><span data-i18n="podcastEyebrow"
+                      >APERTE O PLAY. AMPLIE O OLHAR.</span
+                    >
+                  </p>
+                  <h2 id="title-podcast">
+                    Bytes<br />Estratégicos<span class="yellow">.</span>
+                  </h2>
+                </div>
+                <div>
+                  <p data-i18n="podcastIntro">
+                    Conversas sobre dados, tecnologia e as ideias que movem o
+                    mundo dos negócios.
+                  </p>
+                  <a
+                    class="text-link"
+                    href="https://creators.spotify.com/pod/profile/bytes-estrat-joao-gabriel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><span data-i18n="allEpisodes">Todos os episódios</span
+                    ><span aria-hidden="true">↗</span></a
+                  >
+                </div>
+              </div>
+              <div id="podcast-carousel" class="podcast-grid" aria-busy="true">
+                <p class="feed-state" data-i18n="loadingPodcast">
+                  Carregando episódios…
+                </p>
+              </div>
+              <p class="feed-caption" data-i18n="podcastLanguage">
+                Conteúdo original em português.
+              </p>
+            </div>
+          </section>
+          <section
+            id="github"
+            class="scene"
+            aria-labelledby="title-github"
+            tabindex="-1"
+          >
+            <div class="scene-content projects-layout">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">
+                    <span class="section-index">04</span
+                    ><span data-i18n="projectsEyebrow">DA IDEIA AO CÓDIGO</span>
+                  </p>
+                  <h2 id="title-github" data-i18n="projectsHeading">
+                    Curiosidade<br />na prática<span class="yellow">.</span>
+                  </h2>
+                </div>
+                <div>
+                  <p data-i18n="projectsIntro">
+                    Experimentos, ferramentas e projetos. Um pouco do que
+                    acontece quando uma pergunta vira código.
+                  </p>
+                  <a
+                    class="text-link"
+                    href="https://github.com/jgabriel2302?tab=repositories"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><span data-i18n="allProjects">Explorar o GitHub</span
+                    ><span aria-hidden="true">↗</span></a
+                  >
+                </div>
+              </div>
+              <div id="github-projects" class="projects-grid" aria-busy="true">
+                <p class="feed-state" data-i18n="loadingProjects">
+                  Carregando projetos…
+                </p>
+              </div>
+            </div>
+          </section>
+          <section
+            id="connect"
+            class="scene connect-scene"
+            aria-labelledby="title-connect"
+            tabindex="-1"
+          >
+            <div class="scene-content connect-layout">
+              <div class="connect-copy">
+                <p class="eyebrow">
+                  <span class="section-index">05</span
+                  ><span data-i18n="connectEyebrow"
+                    >A PRÓXIMA IDEIA COMEÇA COM UMA CONVERSA</span
+                  >
+                </p>
+                <h2 id="title-connect" data-i18n="connectHeading">
+                  Vamos criar<br />conexões<span class="yellow">?</span>
+                </h2>
+                <p data-i18n="connectIntro">
+                  Para trocar ideias, compartilhar conhecimento ou construir
+                  algo juntos. A conversa continua por aqui.
+                </p>
+                <a
+                  id="linkedin-link"
+                  class="button primary"
+                  href="https://www.linkedin.com/in/jo%C3%A3o-gabriel-corr%C3%AAa-da-silva"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><span data-i18n="linkedin">Vamos conversar no LinkedIn</span
+                  ><span aria-hidden="true">↗</span></a
+                >
+                <div class="social-links">
+                  <a
+                    href="https://instagram.com/thejoaogabriel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Instagram ↗</a
+                  ><a
+                    href="https://www.youtube.com/@JoaoGabriel-Correa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >YouTube ↗</a
+                  ><a
+                    href="https://tiktok.com/@thejoaogabriel0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >TikTok ↗</a
+                  ><a
+                    href="https://github.com/jgabriel2302"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >GitHub ↗</a
+                  ><a
+                    id="amazon-link"
+                    href="https://amazon.com.br/stores/author/B0F221J937"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Amazon ↗</a
+                  ><a
+                    href="https://creators.spotify.com/pod/profile/bytes-estrat-joao-gabriel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Podcast ↗</a
+                  >
+                </div>
+              </div>
+              <div class="connect-art">
+                <span class="big-asterisk" aria-hidden="true">✳</span>
+                <p>BE THE<br /><span>CHANGE.</span></p>
+              </div>
+              <footer class="site-footer">
+                <p>
+                  © <span id="year">2026</span> João Gabriel Corrêa da Silva
+                </p>
+                <p data-i18n="rights">Todos os direitos reservados.</p>
+                <a href="#home" data-scene="0" data-i18n="backTop"
+                  >Voltar ao início ↑</a
+                >
+              </footer>
+            </div>
+          </section>
+        </div>
+      </div>
     </main>
-
-    <footer>
-        <p>© 2025 João Gabriel Corrêa da Silva. Todos os direitos reservados.</p>
-    </footer>
-</body>
-
-
+    <div class="journey-controls">
+      <div class="progress-track" aria-hidden="true">
+        <span id="journey-progress"></span>
+      </div>
+      <div class="journey-bottom">
+        <div class="scene-counter">
+          <span id="scene-number">01</span><span class="muted"> / 06</span
+          ><span id="scene-label">Início</span>
+        </div>
+        <nav class="scene-dots" aria-label="Cenas" data-i18n-aria="scenes">
+          <a
+            href="#home"
+            data-scene="0"
+            aria-label="Início"
+            data-i18n-aria="home"
+            aria-current="page"
+          ></a
+          ><a
+            href="#book"
+            data-scene="1"
+            aria-label="Livros"
+            data-i18n-aria="books"
+          ></a
+          ><a
+            href="#bio"
+            data-scene="2"
+            aria-label="Sobre"
+            data-i18n-aria="about"
+          ></a
+          ><a href="#podcast" data-scene="3" aria-label="Podcast"></a
+          ><a
+            href="#github"
+            data-scene="4"
+            aria-label="Projetos"
+            data-i18n-aria="projects"
+          ></a
+          ><a
+            href="#connect"
+            data-scene="5"
+            aria-label="Conectar"
+            data-i18n-aria="connect"
+          ></a>
+        </nav>
+        <div class="scroll-hint">
+          <span data-i18n="scrollHint">Role para explorar</span
+          ><span aria-hidden="true">↓</span>
+        </div>
+        <div class="scene-arrows">
+          <button
+            id="previous-scene"
+            type="button"
+            aria-label="Cena anterior"
+            data-i18n-aria="previous"
+            disabled
+          >
+            ←</button
+          ><button
+            id="next-scene"
+            type="button"
+            aria-label="Próxima cena"
+            data-i18n-aria="next"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+    <button
+      id="motion-control"
+      class="motion-control"
+      type="button"
+      hidden
+      aria-pressed="false"
+      data-i18n="enableMotion"
+    >
+      Ativar movimento
+    </button>
+    <p
+      id="scene-announcement"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+    ></p>
+  </body>
 </html>
-

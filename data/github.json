@@ -1,0 +1,66 @@
+{
+  "updatedAt": "2026-11-07T16:33:15.183823+00:00",
+  "source": "https://api.github.com/users/jgabriel2302/repos?sort=updated&per_page=100",
+  "data": [
+    {
+      "name": "sharepoint-api-utils",
+      "description": null,
+      "html_url": "https://github.com/jgabriel2302/sharepoint-api-utils",
+      "language": "JavaScript",
+      "stargazers_count": 1,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "dot-game",
+      "description": null,
+      "html_url": "https://github.com/jgabriel2302/dot-game",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "html2pptx",
+      "description": "Single-class implementation that reads rendered SVG/table content and recreates it via pptxgen.js, ready for use in browsers, CommonJS, AMD or ES-module environments.",
+      "html_url": "https://github.com/jgabriel2302/html2pptx",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "color-picker-alpha",
+      "description": "rovides a color selection UI with hue slider, saturation/lightness panel, alpha slider, HEX input, and palette support.",
+      "html_url": "https://github.com/jgabriel2302/color-picker-alpha",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "data2music",
+      "description": "Data to Music - Transforme sua Série Temporal em Música | m Música",
+      "html_url": "https://github.com/jgabriel2302/data2music",
+      "language": "Jupyter Notebook",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "aco-a-star",
+      "description": "Ant Colony Optmizer & A* created by Joao Gabriel Correa da Silva",
+      "html_url": "https://github.com/jgabriel2302/aco-a-star",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    }
+  ]
+}

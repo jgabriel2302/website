@@ -1,0 +1,60 @@
+{
+  "updatedAt": "2026-11-07T16:33:17.522387+00:00",
+  "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fanchor.fm%2Fs%2F10464ff3c%2Fpodcast%2Frss",
+  "data": {
+    "status": "ok",
+    "feed": {
+      "image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/43586951/43586951-1746191417591-a9aa0f3d49f35.jpg"
+    },
+    "items": [
+      {
+        "title": "Hora de tomar decisões inteligentes",
+        "pubDate": "2025-05-08 10:05:44",
+        "link": "https://podcasters.spotify.com/pod/show/bytes-estrat-joao-gabriel/episodes/Hora-de-tomar-decises-inteligentes-e32i9ul",
+        "enclosure": {
+          "link": "https://anchor.fm/s/10464ff3c/podcast/play/102360469/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-4-8%2F399848966-44100-2-6d597d577711d.m4a",
+          "type": "audio/x-m4a",
+          "length": 1391760,
+          "duration": 85,
+          "rating": {
+            "scheme": "urn:itunes",
+            "value": "false"
+          }
+        },
+        "thumbnail": ""
+      },
+      {
+        "title": "Chief AI Officer — Por que todo diretor precisa pensar como um",
+        "pubDate": "2025-05-02 16:38:28",
+        "link": "https://podcasters.spotify.com/pod/show/bytes-estrat-joao-gabriel/episodes/Chief-AI-Officer--Por-que-todo-diretor-precisa-pensar-como-um-e32a0ao",
+        "enclosure": {
+          "link": "https://anchor.fm/s/10464ff3c/podcast/play/102088472/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-4-2%2F399477871-44100-2-2fd4fa6f53fed.m4a",
+          "type": "audio/x-m4a",
+          "length": 2354955,
+          "duration": 145,
+          "rating": {
+            "scheme": "urn:itunes",
+            "value": "false"
+          }
+        },
+        "thumbnail": ""
+      },
+      {
+        "title": "Storytelling com dados: a habilidade que falta na maioria das apresentações",
+        "pubDate": "2025-05-02 16:32:55",
+        "link": "https://podcasters.spotify.com/pod/show/bytes-estrat-joao-gabriel/episodes/Storytelling-com-dados-a-habilidade-que-falta-na-maioria-das-apresentaes-e329vtn",
+        "enclosure": {
+          "link": "https://anchor.fm/s/10464ff3c/podcast/play/102088055/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-4-2%2F399477398-44100-2-68f5d6b5a34f6.m4a",
+          "type": "audio/x-m4a",
+          "length": 1375597,
+          "duration": 84,
+          "rating": {
+            "scheme": "urn:itunes",
+            "value": "false"
+          }
+        },
+        "thumbnail": ""
+      }
+    ]
+  }
+}
