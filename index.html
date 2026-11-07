@@ -64,6 +64,7 @@
     <script defer src="page.js"></script>
     <script defer src="js/portfolio.js"></script>
     <script defer src="js/scroll.js"></script>
+    <script type="module" src="js/atmosphere.js"></script>
     <script type="module" src="js/scene3d.js"></script>
     <script type="application/ld+json">
       {
@@ -96,6 +97,14 @@
       >Ir para o conteúdo</a
     >
     <div class="ambient" aria-hidden="true"></div>
+    <div class="atmosphere" aria-hidden="true">
+      <div class="light-beams">
+        <span class="light-shaft shaft-warm"></span
+        ><span class="light-shaft shaft-soft"></span
+        ><span class="light-haze"></span>
+      </div>
+      <canvas id="atmosphere-canvas"></canvas>
+    </div>
     <canvas id="scene-canvas" aria-hidden="true"></canvas>
     <header class="site-header">
       <a

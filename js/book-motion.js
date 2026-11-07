@@ -52,8 +52,8 @@
     if (!animate) return;
     const pose = base === "none" ? "" : base;
     const options = {
-      duration: 850,
-      easing: "cubic-bezier(.22,.7,.18,1)",
+      duration: 1150,
+      easing: "cubic-bezier(.4,0,.2,1)",
       fill: "both",
     };
     state.animations = [
@@ -61,7 +61,7 @@
         [
           { transform: pose, opacity: 1 },
           {
-            transform: `translate3d(-170px, -35px, -140px) rotateY(-32deg) ${pose}`,
+            transform: `translate3d(-120px, -24px, -100px) rotateY(-32deg) ${pose}`,
             opacity: 0,
           },
         ],
@@ -70,7 +70,7 @@
       book.animate(
         [
           {
-            transform: `translate3d(170px, 35px, -140px) rotateY(28deg) ${pose}`,
+            transform: `translate3d(120px, 24px, -100px) rotateY(28deg) ${pose}`,
             opacity: 0,
           },
           { transform: pose, opacity: 1 },
