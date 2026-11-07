@@ -1,16 +1,18 @@
 # João Gabriel Corrêa da Silva — Be The Change
 
-Official personal website: books, biography, Bytes Estratégicos, GitHub projects and social links. Static HTML, CSS and JavaScript, served directly by GitHub Pages. **No build, package install, API key or backend is required.**
+Official personal website: books, biography, Bytes Estratégicos, an interactive lab, teaching invitations and social links. Static HTML, CSS and JavaScript, served directly by GitHub Pages. **No build, package install, API key or backend is required.**
 
 ## Experience
 
 - Neutral black, yellow `#ffc002`, locally hosted Poppins and six scenes.
-- On wide, fine-pointer screens (at least 1100 × 760), native vertical scrolling moves a horizontal track. Navigation links, URL fragments, previous/next buttons, arrow keys and history all address the same sections.
-- Mobile, touch devices, shorter screens, oversized content and reduced-motion preferences use a normal vertical document. Browser zoom can trigger the same readable fallback.
-- Local Three.js 0.169.0 adds textured books with covers, a spine and pages, a hexagon network and chart bars. The scene follows scroll progress, responds to the pointer, pauses in hidden tabs, and uses a capped pixel ratio and frame rate. Mobile orientation is opt-in on supported secure devices.
-- CSS book covers remain available when WebGL is unavailable, initialization fails, a texture fails or the context is lost. Reduced motion skips Three.js initialization entirely.
+- On wide, fine-pointer screens (at least 1100 × 760), native vertical scrolling moves a horizontal track. After native wheel/trackpad or keyboard scrolling ends, the nearest scene snaps into place. `scrollend` and a debounced fallback support different browsers; input is never prevented. Navigation links, URL fragments, previous/next buttons, arrow keys and history address the same sections. Track translation uses the actual panel width, including scrollbar gutters.
+- Mobile, touch devices, shorter screens, oversized content and reduced-motion preferences use a normal vertical document. Browser zoom can trigger the same readable fallback. Vertical layouts use proximity snap, so tall sections remain readable; reduced motion disables snapping.
+- Local Three.js 0.169.0 adds textured books with covers, a spine and pages, a hexagon network, chart bars and 24/72 subtle particles on mobile/desktop. Book changes use separate outgoing and incoming volumes, retaining both textures during the handoff. The scene follows scroll progress, responds to the pointer, pauses in hidden tabs and while a demo is open, and uses a capped pixel ratio and frame rate. Mobile orientation is opt-in on supported secure devices.
+- CSS book covers remain available when WebGL is unavailable, initialization fails, a texture fails or the context is lost. CSS fallback also animates separate outgoing and incoming books. Rapid selections ignore stale image loads. Reduced motion disables these transitions and skips Three.js initialization entirely.
 - PT/EN/ES UI strings, persistent language choice and `?locale=pt-BR`, `?locale=en`, `?locale=es` links. Book edition is a separate choice. Spanish UI explicitly identifies the English edition; no Spanish book edition is implied.
-- Podcast uses native accessible audio controls, no preloading or autoplay, and only one player at a time. GitHub cards include language and star count.
+- Podcast uses custom, keyboard-accessible controls: play/pause, ±15 seconds, seek, mute and playback speed. Audio has no native controls, no preloading or autoplay, and only one episode plays at a time. Loading, timeout and retry states are localized; changing the UI language preserves playback.
+- The curated lab contains all eight requested public repositories, four cards per page, with code links and star counts. Demos load in a sandboxed dialog only after a click. Closing removes the iframe to stop audio and computation and restores scroll/focus. A separate-tab link remains available if an embed cannot load. Original demo languages and educational context are identified.
+- Professional copy focuses on AI, financial intelligence and industrial digital transformation. Teaching copy reflects corporate talks/workshops and invites corporate and academic guest sessions. There are no private company project names, screenshots, datasets or performance claims.
 - The existing RSS2JSON and public GitHub endpoints refresh content. Timeouts, empty responses and API errors are handled. Real dated snapshots in `data/` provide a fallback; the snapshot date is displayed when used. External feed text is never injected as HTML, and links are validated before use.
 
 ## Files
@@ -21,6 +23,9 @@ Official personal website: books, biography, Bytes Estratégicos, GitHub project
 | `style.css`           | Responsive layout, typography and CSS book fallback                       |
 | `page.js`             | i18n, book catalog, social links and feed loading/rendering               |
 | `js/scroll.js`        | Scene navigation, anchors, keyboard, focus and layout fallback            |
+| `js/audio-player.js`  | Custom media controls and playback coordination                           |
+| `js/book-motion.js`   | CSS book transitions and stale image-load protection                      |
+| `js/portfolio.js`     | Curated demonstrations, pagination and modal lifecycle                    |
 | `js/scene3d.js`       | Optional Three.js background and lifecycle                                |
 | `js/vendor/`          | Pinned Three.js module and its MIT license                                |
 | `assets/`             | Local WOFF fonts, WebP images, favicon, Open Graph image and font license |
@@ -54,9 +59,8 @@ Open `http://localhost:8000/?locale=pt-BR`. Test optional locale and fragment li
 
 ```sh
 node --check page.js
-node --check js/scroll.js
-node --check js/scene3d.js
-node --test tests/site.test.cjs
+for file in js/*.js; do node --check "$file"; done
+node --test tests/*.test.cjs
 ```
 
 The GitHub Actions check runs these commands on pull requests and pushes to `main`.
@@ -65,11 +69,34 @@ The GitHub Actions check runs these commands on pull requests and pushes to `mai
 
 ![Homepage with CSS book fallback](docs/screenshots/home-20261107.jpg)
 
+![Custom podcast player](docs/screenshots/player-20261107.jpg)
+
 ## Verification and limitations
 
-Automated checks cover locale variants, complete translated UI labels, the four ASIN mappings, asset paths, unsafe URL rejection, external text handling, malformed API responses, bundled snapshots and third-party licenses. Browser QA covers desktop navigation, edition switching, mobile/tablet layouts and CSS fallback without WebGL.
+Automated checks cover locale variants, complete translated UI labels, the four ASIN mappings, asset paths, unsafe URL rejection, external text handling, malformed API responses, bundled snapshots and third-party licenses. Regression tests also cover single-episode playback, bounded seeking, rejected or stalled play requests, cancellation races, late cover loads and all eight demo entry paths. Browser QA covers desktop wheel snap, edition transitions, real podcast playback/speed/episode switching, PT/EN/ES, modal execution and mobile/tablet layouts. The original Simply Similar example returned 52.63% inside the dialog. All eight public demo entry URLs returned HTTP 200 without frame restrictions on 7 November 2026.
 
 The cloud QA browser disables WebGL. The actual GPU rendering, hardware frame rate and phone gyroscope therefore require a WebGL-enabled browser/device check; CSS fallback was directly observed. No Lighthouse score or real-device performance result is claimed. External audio playback also depends on the podcast hosting service and browser codec support.
+
+## Public sources and demo entry points
+
+Only public examples are described. The professional positioning and corporate teaching experience were supplied by the author. The linked articles are examples of published work, not claims about private corporate deployments:
+
+- [Simply Similiar: Part 2 — 9 November 2024](https://www.linkedin.com/pulse/simply-similiar-part-2-jo%C3%A3o-gabriel-corr%C3%AAa-da-silva-3qkif)
+- [Machine Inside Out — 15 November 2024](https://www.linkedin.com/pulse/machine-inside-out-how-artificial-neural-networks-corr%C3%AAa-da-silva-6fzaf)
+- [Didactics applied to the corporate environment — 30 May 2024](https://www.linkedin.com/pulse/didactics-applied-corporate-environment-how-improve-corr%C3%AAa-da-silva-ipdse)
+
+| Repository                 | Live entry                                                 | Example data/context                                                                      |
+| -------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| data2music                 | https://jgabriel2302.github.io/data2music/                 | Public Trending Movies CSV or visitor-provided sample                                     |
+| aco-a-star                 | https://jgabriel2302.github.io/aco-a-star/                 | Simulated routes; needs WebGL                                                             |
+| decision-tree-for-projects | https://jgabriel2302.github.io/decision-tree-for-projects/ | Generated strategic projects; original app also offers a public industrial-safety example |
+| risk-means-nn              | https://jgabriel2302.github.io/risk-means-nn/              | Generated probabilities and impacts                                                       |
+| previsao-ebitda            | https://jgabriel2302.github.io/previsao-ebitda/exemple/    | Public Petrobras data, 2019–2024; educational forecasting                                 |
+| machine-Inside-out         | https://jgabriel2302.github.io/machine-Inside-out/exemple/ | Visitor-drawn digits                                                                      |
+| simply-similar             | https://jgabriel2302.github.io/simply-similar/exemple/     | Editable sample texts; `/exemple/en/` for English                                         |
+| carro-autonomo             | https://jgabriel2302.github.io/carro-autonomo/             | Simulated driving and sensors                                                             |
+
+Demos are the author's existing independently hosted applications, not copies maintained in this repository. Their interfaces, external dependencies and browser requirements remain their own. A successful iframe load cannot prove every remote app feature works; the UI always offers a separate-tab fallback.
 
 ## Rights
 
