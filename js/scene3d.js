@@ -53,7 +53,8 @@ async function createScene(THREE) {
     last = 0,
     elapsed = 0,
     hovered = false,
-    enabledMotion = false;
+    enabledMotion = false,
+    demoOpen = false;
   let progress = window.SceneNavigation?.progress || 0;
   let horizontal = window.SceneNavigation?.horizontal || false;
   const pointer = new THREE.Vector2(),
@@ -142,6 +143,49 @@ async function createScene(THREE) {
   }
   const books = [book(pt), book(en)];
   if (!mobile) books.push(book(pt), book(en));
+  // Two temporary physical volumes retain the old textures during a handoff.
+  const outgoingBooks = [book(pt), book(en)];
+  outgoingBooks.forEach((group) => {
+    group.visible = false;
+  });
+  let pendingExchange = null,
+    exchange = null,
+    coverInitialized = false;
+  function beginExchange() {
+    if (!pendingExchange || exchange) return;
+    const maps = pendingExchange;
+    pendingExchange = null;
+    const changed = maps.map((map, i) => books[i].userData.front.map !== map);
+    if (!changed.some(Boolean)) return;
+    maps.forEach((map, i) => {
+      outgoingBooks[i].userData.front.map = books[i].userData.front.map;
+      outgoingBooks[i].userData.front.needsUpdate = true;
+      books[i].userData.front.map = map;
+      books[i].userData.front.needsUpdate = true;
+    });
+    exchange = { start: elapsed, changed };
+  }
+  const particleCount = mobile ? 24 : 72;
+  const particlePositions = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount; i++) {
+    particlePositions[i * 3] = Math.sin(i * 127.1) * 9;
+    particlePositions[i * 3 + 1] = Math.sin(i * 311.7) * 5;
+    particlePositions[i * 3 + 2] = -1 - (i % 7);
+  }
+  const particleGeometry = new THREE.BufferGeometry();
+  particleGeometry.setAttribute(
+    "position",
+    new THREE.BufferAttribute(particlePositions, 3),
+  );
+  const particleMaterial = new THREE.PointsMaterial({
+    color: 0xffc002,
+    size: 0.022,
+    transparent: true,
+    opacity: 0.28,
+    depthWrite: false,
+  });
+  const particles = new THREE.Points(particleGeometry, particleMaterial);
+  scene.add(particles);
   const hexGroup = new THREE.Group();
   scene.add(hexGroup);
   const hexMaterial = new THREE.LineBasicMaterial({
@@ -207,18 +251,22 @@ async function createScene(THREE) {
   resize();
   let activeCover = "";
   async function updateCover() {
-    books[1].userData.front.map = window.Website?.language === "pt-BR" ? en : pt;
-    books[1].userData.front.needsUpdate = true;
     const url =
       progress < 0.5 ? window.Website?.heroCover : window.Website?.bookCover;
-    if (!url || url === activeCover) return;
-    activeCover = url;
+    const second = window.Website?.language === "pt-BR" ? en : pt;
+    const key = url + ":" + second.uuid;
+    if (!url || key === activeCover) return;
+    activeCover = key;
     try {
       const map = await texture(url);
-      if (!disposed && activeCover === url) {
-        books[0].userData.front.map = map;
-        books[0].userData.front.needsUpdate = true;
-      }
+      if (disposed || activeCover !== key) return;
+      if (!coverInitialized) {
+        [map, second].forEach((value, i) => {
+          books[i].userData.front.map = value;
+          books[i].userData.front.needsUpdate = true;
+        });
+        coverInitialized = true;
+      } else pendingExchange = [map, second]; // Latest requested edition wins, even while textures load.
     } catch {
       failed = true;
       root.classList.remove("webgl-ready");
@@ -238,7 +286,7 @@ async function createScene(THREE) {
     );
     group.scale.setScalar((pixelHeight * unit) / 3);
     const coverImage = group.userData.front.map.image;
-    group.scale.x *= (coverImage.width / coverImage.height) / (2 / 3);
+    group.scale.x *= coverImage.width / coverImage.height / (2 / 3);
     group.rotation.set(
       0.05 + pointer.y * 0.035,
       rotation.y + pointer.x * 0.08,
@@ -251,15 +299,56 @@ async function createScene(THREE) {
       material.depthWrite = alpha > 0.9;
     });
   }
+  function placeExchangingBook(index, bx, by, height, depth, turn, opacity) {
+    if (!exchange?.changed[index]) {
+      positionBook(books[index], bx, by, height, depth, turn, opacity);
+      outgoingBooks[index].visible = false;
+      return;
+    }
+    const t = Math.min(1, (elapsed - exchange.start) / 0.95);
+    const out = 1 - Math.pow(1 - t, 3);
+    const into = Math.max(0, (t - 0.12) / 0.88);
+    const incoming = 1 - Math.pow(1 - into, 3);
+    const distance = Math.max(160, height * 0.65);
+    positionBook(
+      outgoingBooks[index],
+      bx - distance * out,
+      by - 32 * out,
+      height * (1 - out * 0.15),
+      depth - out * 1.4,
+      { y: turn.y - out * 0.65, z: turn.z - out * 0.14 },
+      opacity * (1 - out),
+    );
+    positionBook(
+      books[index],
+      bx + distance * (1 - incoming),
+      by + 32 * (1 - incoming),
+      height * (0.85 + incoming * 0.15),
+      depth - (1 - incoming) * 1.4,
+      {
+        y: turn.y + (1 - incoming) * 0.65,
+        z: turn.z + (1 - incoming) * 0.14,
+      },
+      opacity * incoming,
+    );
+  }
   const lerp = THREE.MathUtils.lerp;
   function render(timestamp) {
     raf = 0;
-    if (disposed || failed || document.hidden || reduced.matches) return;
+    if (disposed || failed || document.hidden || demoOpen || reduced.matches)
+      return;
     raf = requestAnimationFrame(render);
     if (timestamp - last < 1000 / (mobile ? 24 : 30)) return;
     const delta = Math.min((timestamp - last) / 1000, 0.05);
     last = timestamp;
     elapsed += delta;
+    if (exchange && elapsed - exchange.start >= 0.95) {
+      exchange = null;
+      outgoingBooks.forEach((group) => {
+        group.visible = false;
+      });
+    }
+    beginExchange();
     camera.position.z = 12 + Math.max(0, Math.min(1, progress - 1)) * 1.3;
     camera.position.x = pointer.x * 0.06;
     camera.position.y = pointer.y * 0.04;
@@ -308,8 +397,8 @@ async function createScene(THREE) {
       y: -0.24 + Math.sin(elapsed * 0.22) * 0.08 + (hovered ? 0.08 : 0),
       z: lerp(-0.12, -0.05, blend),
     };
-    positionBook(
-      books[0],
+    placeExchangingBook(
+      0,
       x,
       y + float,
       size * (hovered ? 1.035 : 1),
@@ -318,8 +407,8 @@ async function createScene(THREE) {
       alpha,
     );
     const spread = lerp(hero.width * 0.28, detail.width * 0.24, blend);
-    positionBook(
-      books[1],
+    placeExchangingBook(
+      1,
       x + spread,
       y - size * 0.14 - float,
       size * 0.76,
@@ -358,10 +447,18 @@ async function createScene(THREE) {
         bar.userData.height * (0.8 + Math.sin(elapsed * 0.8 + i * 0.8) * 0.2);
       bar.position.y = bar.scale.y / 2;
     });
+    particles.rotation.y = Math.sin(elapsed * 0.025) * 0.12;
+    particles.position.y = Math.sin(elapsed * 0.15) * 0.2;
+    particleMaterial.opacity =
+      0.22 +
+      (exchange
+        ? Math.sin(Math.PI * Math.min(1, (elapsed - exchange.start) / 0.95)) *
+          0.18
+        : 0);
     renderer.render(scene, camera);
   }
   function run() {
-    if (!raf && !document.hidden && !reduced.matches && !failed) {
+    if (!raf && !document.hidden && !demoOpen && !reduced.matches && !failed) {
       last = performance.now();
       raf = requestAnimationFrame(render);
     }
@@ -377,6 +474,10 @@ async function createScene(THREE) {
     updateCover();
   }
   listen(window, "sceneprogress", onProgress);
+  listen(window, "demotoggle", (event) => {
+    demoOpen = event.detail.open;
+    demoOpen ? stop() : run();
+  });
   listen(window, "bookchange", updateCover);
   listen(window, "languagechange", updateCover);
   listen(window, "resize", resize, { passive: true });
@@ -428,7 +529,7 @@ async function createScene(THREE) {
     motionButton.hidden = false;
     listen(motionButton, "click", async () => {
       if (enabledMotion) {
-        enabledMotion = false;
+        ((enabledMotion = false), (demoOpen = false));
         pointer.set(0, 0);
         motionButton.setAttribute("aria-pressed", "false");
         syncMotionLabel();
@@ -468,13 +569,15 @@ async function createScene(THREE) {
     root.classList.remove("webgl-ready");
     motionButton.hidden = true;
     canvas.style.filter = "";
-    for (const group of books)
+    for (const group of [...books, ...outgoingBooks])
       group.userData.materials.forEach((material) => material.dispose());
     bookGeometries.forEach((geometry) => geometry.dispose());
     hexGeometry.dispose();
     hexMaterial.dispose();
     barGeometry.dispose();
     barMaterial.dispose();
+    particleGeometry.dispose();
+    particleMaterial.dispose();
     paperTexture.dispose();
     textures.forEach((promise) =>
       promise.then((map) => map.dispose()).catch(() => {}),

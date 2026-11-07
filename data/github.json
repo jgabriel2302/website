@@ -1,51 +1,10 @@
 {
-  "updatedAt": "2026-11-07T16:33:15.183823+00:00",
-  "source": "https://api.github.com/users/jgabriel2302/repos?sort=updated&per_page=100",
+  "updatedAt": "2026-11-07T00:00:00Z",
   "data": [
     {
-      "name": "sharepoint-api-utils",
-      "description": null,
-      "html_url": "https://github.com/jgabriel2302/sharepoint-api-utils",
-      "language": "JavaScript",
-      "stargazers_count": 1,
-      "fork": false,
-      "archived": false,
-      "private": false
-    },
-    {
-      "name": "dot-game",
-      "description": null,
-      "html_url": "https://github.com/jgabriel2302/dot-game",
-      "language": "JavaScript",
-      "stargazers_count": 0,
-      "fork": false,
-      "archived": false,
-      "private": false
-    },
-    {
-      "name": "html2pptx",
-      "description": "Single-class implementation that reads rendered SVG/table content and recreates it via pptxgen.js, ready for use in browsers, CommonJS, AMD or ES-module environments.",
-      "html_url": "https://github.com/jgabriel2302/html2pptx",
-      "language": "JavaScript",
-      "stargazers_count": 0,
-      "fork": false,
-      "archived": false,
-      "private": false
-    },
-    {
-      "name": "color-picker-alpha",
-      "description": "rovides a color selection UI with hue slider, saturation/lightness panel, alpha slider, HEX input, and palette support.",
-      "html_url": "https://github.com/jgabriel2302/color-picker-alpha",
-      "language": "JavaScript",
-      "stargazers_count": 0,
-      "fork": false,
-      "archived": false,
-      "private": false
-    },
-    {
       "name": "data2music",
-      "description": "Data to Music - Transforme sua Série Temporal em Música | m Música",
       "html_url": "https://github.com/jgabriel2302/data2music",
+      "description": "Data to Music - Transforme sua Série Temporal em Música | m Música",
       "language": "Jupyter Notebook",
       "stargazers_count": 0,
       "fork": false,
@@ -54,10 +13,70 @@
     },
     {
       "name": "aco-a-star",
-      "description": "Ant Colony Optmizer & A* created by Joao Gabriel Correa da Silva",
       "html_url": "https://github.com/jgabriel2302/aco-a-star",
+      "description": "Ant Colony Optmizer & A* created by Joao Gabriel Correa da Silva",
       "language": "JavaScript",
       "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "decision-tree-for-projects",
+      "html_url": "https://github.com/jgabriel2302/decision-tree-for-projects",
+      "description": "Avaliando Projetos Estratégicos com IA - Árvore de Decisão. Como decidir quais projetos estratégicos priorizar em sua empresa? Created by João Gabriel Corrêa da Silva",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "risk-means-nn",
+      "html_url": "https://github.com/jgabriel2302/risk-means-nn",
+      "description": "IA NA  Análise de Riscos: Simplicidade e Poder na Gestão Empresarial com  K-Means e o K-Nearest Neighbors",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "previsao-ebitda",
+      "html_url": "https://github.com/jgabriel2302/previsao-ebitda",
+      "description": "Uma análise baseada em dados públicos da Petrobras (2019-2024). Created by João Gabriel Corrêa da Silva",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "machine-Inside-out",
+      "html_url": "https://github.com/jgabriel2302/machine-Inside-out",
+      "description": null,
+      "language": "HTML",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "simply-similar",
+      "html_url": "https://github.com/jgabriel2302/simply-similar",
+      "description": "Simply Similar is an CountVectorizer algorithm in Javascript",
+      "language": "HTML",
+      "stargazers_count": 0,
+      "fork": false,
+      "archived": false,
+      "private": false
+    },
+    {
+      "name": "carro-autonomo",
+      "html_url": "https://github.com/jgabriel2302/carro-autonomo",
+      "description": "Continuando os estudos em torno da inteligência artificial, hoje desenvolvi uma experiência usando rede neural, que é um método de inteligência artificial que ensina computadores a processar dados de uma forma inspirada pelo cérebro humano. É um tipo de processo de machine learning, chamado aprendizado profundo, que usa nós ou neurônios intercon...",
+      "language": "JavaScript",
+      "stargazers_count": 1,
       "fork": false,
       "archived": false,
       "private": false

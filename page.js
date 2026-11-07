@@ -8,13 +8,13 @@ const translations = {
     home: "Início",
     books: "Livros",
     about: "Sobre",
-    projects: "Projetos",
+    projects: "Laboratório",
     connect: "Conectar",
     language: "Idioma",
-    heroEyebrow: "ENGENHARIA · DADOS · CRIATIVIDADE",
+    heroEyebrow: "IA · INTELIGÊNCIA FINANCEIRA · INDÚSTRIA",
     heroStatement: "Dados viram decisões.<br>Tecnologia vira impacto.",
     heroDescription:
-      "Exploro o encontro entre análise e criatividade. E compartilho o que aprendo em livros, conversas e código.",
+      "Conecto inteligência artificial, inteligência financeira e transformação digital em ambientes industriais. Compartilho essa visão em livros, ensino e experiências interativas.",
     discoverBooks: "Conheça os livros",
     myStory: "Minha trajetória",
     heroFootnote: "Curiosidade em movimento.",
@@ -33,13 +33,13 @@ const translations = {
       "Edição em inglês · livro não disponível em espanhol neste catálogo",
     aboutEyebrow: "POR TRÁS DOS DADOS",
     aboutHeading:
-      'Engenheiro por formação.<br>Curioso por natureza<span class="yellow">.</span>',
-    bio: "Sou João Gabriel, engenheiro, autor e profissional de dados e inteligência artificial. Minha trajetória conecta performance industrial, finanças e tecnologia — sempre com o olhar voltado para problemas reais.",
+      'Entre a indústria,<br>as finanças e a IA<span class="yellow">.</span>',
+    bio: "Sou João Gabriel, engenheiro, autor e profissional de dados e inteligência artificial. Minha atuação conecta performance industrial, inteligência financeira e transformação digital, traduzindo problemas de negócio em soluções com dados.",
     bioSecond:
-      "Acredito que conhecimento ganha valor quando é compartilhado. Por isso, escrevo, desenvolvo projetos e abro conversas sobre como transformar análise em ação.",
+      "Aqui compartilho estudos e experimentos públicos, além das ideias que desenvolvo em livros e no podcast Bytes Estratégicos.",
     quote:
       "“Apaixonado por resolver problemas com dados, tecnologia e propósito.”",
-    expertiseData: "Ciência de dados",
+    expertiseData: "Inteligência financeira",
     expertiseAI: "Inteligência artificial",
     portraitAlt: "João Gabriel falando ao microfone",
     podcastEyebrow: "APERTE O PLAY. AMPLIE O OLHAR.",
@@ -51,10 +51,11 @@ const translations = {
     listen: "Ouvir episódio",
     episode: "Episódio",
     audioLabel: "Reproduzir episódio",
-    projectsEyebrow: "DA IDEIA AO CÓDIGO",
-    projectsHeading: 'Curiosidade<br>na prática<span class="yellow">.</span>',
+    projectsEyebrow: "EXPLORE. EXPERIMENTE. ENTENDA.",
+    projectsHeading:
+      'Ideias que você<br>pode testar<span class="yellow">.</span>',
     projectsIntro:
-      "Experimentos, ferramentas e projetos. Um pouco do que acontece quando uma pergunta vira código.",
+      "Oito experiências abertas para explorar algoritmos, decisões e criatividade. Use os exemplos públicos ou dados sintéticos.",
     allProjects: "Explorar o GitHub",
     loadingProjects: "Carregando projetos…",
     noDescription: "Explore o código e a documentação deste projeto.",
@@ -62,8 +63,8 @@ const translations = {
     connectEyebrow: "A PRÓXIMA IDEIA COMEÇA COM UMA CONVERSA",
     connectHeading: 'Vamos criar<br>conexões<span class="yellow">?</span>',
     connectIntro:
-      "Para trocar ideias, compartilhar conhecimento ou construir algo juntos. A conversa continua por aqui.",
-    linkedin: "Vamos conversar no LinkedIn",
+      "Aberto a convites para palestras, workshops corporativos e participações acadêmicas. Vamos conversar sobre o tema, o público e o formato.",
+    linkedin: "Convidar para uma conversa",
     rights: "Todos os direitos reservados.",
     backTop: "Voltar ao início ↑",
     scenes: "Cenas",
@@ -77,9 +78,46 @@ const translations = {
     feedError: "Não foi possível atualizar este conteúdo agora.",
     feedEmpty: "Nenhum conteúdo disponível no momento.",
     cached: "Última atualização",
-    metaTitle: "Dados, decisões e criatividade",
+    metaTitle: "IA, inteligência financeira e transformação digital",
     metaDescription:
-      "Engenharia, dados e criatividade. Conheça os livros, o podcast e os projetos de João Gabriel Corrêa da Silva.",
+      "João Gabriel Corrêa da Silva: IA, inteligência financeira e transformação digital na indústria. Livros, podcast, palestras e demonstrações interativas.",
+    expertiseIndustry: "Transformação digital",
+    publicStudies: "ESTUDOS PUBLICADOS NO LINKEDIN",
+    articleSimilarity: "Similaridade textual na prática",
+    articleNeural: "Como uma rede neural aprende",
+    tryDemo: "Experimentar",
+    sourceCode: "Código",
+    demoPage: "Página de demonstrações",
+    previousDemos: "Experiências anteriores",
+    nextDemos: "Próximas experiências",
+    closeDemo: "Fechar demonstração",
+    openDemo: "Abrir em outra aba",
+    loadingDemo: "Carregando a experiência…",
+    demoFallback: "A experiência não apareceu? Abra em outra aba.",
+    demoLanguage: "Experiência original: ",
+    demoEducational:
+      "Experimento educacional · use dados públicos ou sintéticos.",
+    teachingEyebrow: "PALESTRAS · WORKSHOPS · ENSINO",
+    teachingHeading: "Conhecimento<br>em circulação.",
+    teachingIntro:
+      "Tenho experiência com palestras e workshops corporativos. Levo temas de dados e tecnologia para conversas práticas, conectadas aos desafios de quem aprende.",
+    teachingTopics: "TEMAS PARA UMA CONVERSA",
+    topicAI: "IA aplicada a negócios e finanças",
+    topicData: "Análise e storytelling com dados",
+    topicDigital: "Transformação digital na indústria",
+    topicML: "Aprendizado de máquina na prática",
+    teachingArticle: "Leia meu artigo sobre didática",
+    audioPlay: "Reproduzir",
+    audioPause: "Pausar",
+    audioSeek: "Posição do áudio",
+    audioMute: "Silenciar",
+    audioUnmute: "Ativar som",
+    audioSpeed: "Velocidade de reprodução",
+    audioLoading: "Carregando áudio…",
+    audioError: "Áudio indisponível. Tente novamente ou abra o episódio.",
+    audioRetry: "Tentar reproduzir novamente",
+    audioBack: "Voltar 15 segundos",
+    audioForward: "Avançar 15 segundos",
   },
   en: {
     skip: "Skip to content",
@@ -87,13 +125,13 @@ const translations = {
     home: "Home",
     books: "Books",
     about: "About",
-    projects: "Projects",
+    projects: "Lab",
     connect: "Connect",
     language: "Language",
-    heroEyebrow: "ENGINEERING · DATA · CREATIVITY",
+    heroEyebrow: "AI · FINANCIAL INTELLIGENCE · INDUSTRY",
     heroStatement: "Turning data into decisions.<br>Technology into impact.",
     heroDescription:
-      "I explore where analysis meets creativity. And share what I learn through books, conversations and code.",
+      "I connect artificial intelligence, financial intelligence and digital transformation in industrial environments. I share this perspective through books, teaching and interactive experiences.",
     discoverBooks: "Explore the books",
     myStory: "My story",
     heroFootnote: "Curiosity in motion.",
@@ -111,13 +149,13 @@ const translations = {
     editionES: "English edition · no Spanish edition in this catalog",
     aboutEyebrow: "BEHIND THE DATA",
     aboutHeading:
-      'An engineer by training.<br>Curious by nature<span class="yellow">.</span>',
-    bio: "I’m João Gabriel, an engineer, author and data and AI professional. My work connects industrial performance, finance and technology, with a focus on real problems.",
+      'Where industry,<br>finance and AI meet<span class="yellow">.</span>',
+    bio: "I’m João Gabriel, an engineer, author and data and AI professional. My work connects industrial performance, financial intelligence and digital transformation, turning business problems into data-driven solutions.",
     bioSecond:
-      "I believe knowledge becomes more valuable when shared. So I write, build projects and start conversations about turning analysis into action.",
+      "Here I share public studies and experiments, along with the ideas I explore in books and the Bytes Estratégicos podcast.",
     quote:
       "“Passionate about solving problems with data, technology and purpose.”",
-    expertiseData: "Data science",
+    expertiseData: "Financial intelligence",
     expertiseAI: "Artificial intelligence",
     portraitAlt: "João Gabriel speaking into a microphone",
     podcastEyebrow: "PRESS PLAY. EXPAND YOUR PERSPECTIVE.",
@@ -129,10 +167,11 @@ const translations = {
     listen: "Listen to episode",
     episode: "Episode",
     audioLabel: "Play episode",
-    projectsEyebrow: "FROM IDEA TO CODE",
-    projectsHeading: 'Curiosity<br>in practice<span class="yellow">.</span>',
+    projectsEyebrow: "EXPLORE. EXPERIMENT. UNDERSTAND.",
+    projectsHeading:
+      'Ideas you can<br>try yourself<span class="yellow">.</span>',
     projectsIntro:
-      "Experiments, tools and projects. A look at what happens when a question turns into code.",
+      "Eight open experiences exploring algorithms, decisions and creativity. Use the public examples or synthetic data.",
     allProjects: "Explore GitHub",
     loadingProjects: "Loading projects…",
     noDescription: "Explore the code and documentation for this project.",
@@ -140,8 +179,8 @@ const translations = {
     connectEyebrow: "THE NEXT IDEA STARTS WITH A CONVERSATION",
     connectHeading: 'Let’s make<br>connections<span class="yellow">.</span>',
     connectIntro:
-      "To exchange ideas, share knowledge or build something together. Let’s keep the conversation going.",
-    linkedin: "Let’s connect on LinkedIn",
+      "Open to invitations for talks, corporate workshops and academic guest sessions. Let’s discuss the topic, audience and format.",
+    linkedin: "Invite me to a conversation",
     rights: "All rights reserved.",
     backTop: "Back to the beginning ↑",
     scenes: "Scenes",
@@ -155,9 +194,45 @@ const translations = {
     feedError: "This content could not be updated right now.",
     feedEmpty: "No content available at the moment.",
     cached: "Last updated",
-    metaTitle: "Data, decisions and creativity",
+    metaTitle: "AI, financial intelligence and digital transformation",
     metaDescription:
-      "Engineering, data and creativity. Explore books, the podcast and projects by João Gabriel Corrêa da Silva.",
+      "João Gabriel Corrêa da Silva: AI, financial intelligence and digital transformation in industry. Books, podcast, talks and interactive demos.",
+    expertiseIndustry: "Digital transformation",
+    publicStudies: "PUBLISHED STUDIES ON LINKEDIN",
+    articleSimilarity: "Text similarity in practice",
+    articleNeural: "How a neural network learns",
+    tryDemo: "Try it",
+    sourceCode: "Code",
+    demoPage: "Demo page",
+    previousDemos: "Previous experiences",
+    nextDemos: "Next experiences",
+    closeDemo: "Close demo",
+    openDemo: "Open in a new tab",
+    loadingDemo: "Loading the experience…",
+    demoFallback: "Experience not showing? Open it in a new tab.",
+    demoLanguage: "Original experience: ",
+    demoEducational: "Educational experiment · use public or synthetic data.",
+    teachingEyebrow: "TALKS · WORKSHOPS · TEACHING",
+    teachingHeading: "Knowledge<br>in circulation.",
+    teachingIntro:
+      "I have experience delivering corporate talks and workshops. I bring data and technology into practical conversations, connected to the challenges learners face.",
+    teachingTopics: "TOPICS TO EXPLORE TOGETHER",
+    topicAI: "AI for business and finance",
+    topicData: "Data analysis and storytelling",
+    topicDigital: "Digital transformation in industry",
+    topicML: "Machine learning in practice",
+    teachingArticle: "Read my article on teaching",
+    audioPlay: "Play",
+    audioPause: "Pause",
+    audioSeek: "Audio position",
+    audioMute: "Mute",
+    audioUnmute: "Unmute",
+    audioSpeed: "Playback speed",
+    audioLoading: "Loading audio…",
+    audioError: "Audio unavailable. Try again or open the episode.",
+    audioRetry: "Try playing again",
+    audioBack: "Back 15 seconds",
+    audioForward: "Forward 15 seconds",
   },
   es: {
     skip: "Ir al contenido",
@@ -165,14 +240,14 @@ const translations = {
     home: "Inicio",
     books: "Libros",
     about: "Sobre mí",
-    projects: "Proyectos",
+    projects: "Laboratorio",
     connect: "Conectar",
     language: "Idioma",
-    heroEyebrow: "INGENIERÍA · DATOS · CREATIVIDAD",
+    heroEyebrow: "IA · INTELIGENCIA FINANCIERA · INDUSTRIA",
     heroStatement:
       "Datos que se vuelven decisiones.<br>Tecnología que genera impacto.",
     heroDescription:
-      "Exploro el encuentro entre análisis y creatividad. Y comparto lo que aprendo en libros, conversaciones y código.",
+      "Conecto inteligencia artificial, inteligencia financiera y transformación digital en entornos industriales. Comparto esta visión en libros, enseñanza y experiencias interactivas.",
     discoverBooks: "Descubre los libros",
     myStory: "Mi trayectoria",
     heroFootnote: "Curiosidad en movimiento.",
@@ -190,13 +265,13 @@ const translations = {
     editionES: "Edición en inglés · sin edición en español en este catálogo",
     aboutEyebrow: "DETRÁS DE LOS DATOS",
     aboutHeading:
-      'Ingeniero de formación.<br>Curioso por naturaleza<span class="yellow">.</span>',
-    bio: "Soy João Gabriel, ingeniero, autor y profesional de datos e inteligencia artificial. Mi trayectoria conecta desempeño industrial, finanzas y tecnología, con la mirada puesta en problemas reales.",
+      'Entre la industria,<br>las finanzas y la IA<span class="yellow">.</span>',
+    bio: "Soy João Gabriel, ingeniero, autor y profesional de datos e inteligencia artificial. Mi trabajo conecta el desempeño industrial, la inteligencia financiera y la transformación digital, convirtiendo problemas de negocio en soluciones con datos.",
     bioSecond:
-      "Creo que el conocimiento gana valor al compartirlo. Por eso escribo, desarrollo proyectos y abro conversaciones sobre cómo transformar el análisis en acción.",
+      "Aquí comparto estudios y experimentos públicos, además de las ideas que exploro en libros y en el podcast Bytes Estratégicos.",
     quote:
       "«Apasionado por resolver problemas con datos, tecnología y propósito».",
-    expertiseData: "Ciencia de datos",
+    expertiseData: "Inteligencia financiera",
     expertiseAI: "Inteligencia artificial",
     portraitAlt: "João Gabriel hablando por un micrófono",
     podcastEyebrow: "DALE AL PLAY. AMPLÍA TU MIRADA.",
@@ -208,11 +283,11 @@ const translations = {
     listen: "Escuchar episodio",
     episode: "Episodio",
     audioLabel: "Reproducir episodio",
-    projectsEyebrow: "DE LA IDEA AL CÓDIGO",
+    projectsEyebrow: "EXPLORA. EXPERIMENTA. COMPRENDE.",
     projectsHeading:
-      'Curiosidad<br>en la práctica<span class="yellow">.</span>',
+      'Ideas que puedes<br>poner a prueba<span class="yellow">.</span>',
     projectsIntro:
-      "Experimentos, herramientas y proyectos. Un vistazo a lo que sucede cuando una pregunta se convierte en código.",
+      "Ocho experiencias abiertas sobre algoritmos, decisiones y creatividad. Utiliza los ejemplos públicos o datos sintéticos.",
     allProjects: "Explorar GitHub",
     loadingProjects: "Cargando proyectos…",
     noDescription: "Explora el código y la documentación de este proyecto.",
@@ -220,8 +295,8 @@ const translations = {
     connectEyebrow: "LA PRÓXIMA IDEA EMPIEZA CON UNA CONVERSACIÓN",
     connectHeading: 'Creemos<br>conexiones<span class="yellow">.</span>',
     connectIntro:
-      "Para intercambiar ideas, compartir conocimientos o construir algo juntos. La conversación continúa aquí.",
-    linkedin: "Conversemos en LinkedIn",
+      "Abierto a invitaciones para charlas, talleres corporativos y participaciones académicas. Conversemos sobre el tema, el público y el formato.",
+    linkedin: "Invitarme a una conversación",
     rights: "Todos los derechos reservados.",
     backTop: "Volver al inicio ↑",
     scenes: "Escenas",
@@ -235,9 +310,46 @@ const translations = {
     feedError: "No se pudo actualizar este contenido ahora.",
     feedEmpty: "No hay contenido disponible en este momento.",
     cached: "Última actualización",
-    metaTitle: "Datos, decisiones y creatividad",
+    metaTitle: "IA, inteligencia financiera y transformación digital",
     metaDescription:
-      "Ingeniería, datos y creatividad. Descubre los libros, el podcast y los proyectos de João Gabriel Corrêa da Silva.",
+      "João Gabriel Corrêa da Silva: IA, inteligencia financiera y transformación digital en la industria. Libros, podcast, charlas y demostraciones interactivas.",
+    expertiseIndustry: "Transformación digital",
+    publicStudies: "ESTUDIOS PUBLICADOS EN LINKEDIN",
+    articleSimilarity: "Similitud textual en la práctica",
+    articleNeural: "Cómo aprende una red neuronal",
+    tryDemo: "Experimentar",
+    sourceCode: "Código",
+    demoPage: "Página de demostraciones",
+    previousDemos: "Experiencias anteriores",
+    nextDemos: "Próximas experiencias",
+    closeDemo: "Cerrar demostración",
+    openDemo: "Abrir en otra pestaña",
+    loadingDemo: "Cargando la experiencia…",
+    demoFallback: "¿No aparece la experiencia? Ábrela en otra pestaña.",
+    demoLanguage: "Experiencia original: ",
+    demoEducational:
+      "Experimento educativo · utiliza datos públicos o sintéticos.",
+    teachingEyebrow: "CHARLAS · TALLERES · ENSEÑANZA",
+    teachingHeading: "Conocimiento<br>en circulación.",
+    teachingIntro:
+      "Tengo experiencia impartiendo charlas y talleres corporativos. Llevo los datos y la tecnología a conversaciones prácticas, conectadas con los desafíos de quienes aprenden.",
+    teachingTopics: "TEMAS PARA EXPLORAR JUNTOS",
+    topicAI: "IA aplicada a negocios y finanzas",
+    topicData: "Análisis y storytelling con datos",
+    topicDigital: "Transformación digital en la industria",
+    topicML: "Aprendizaje automático en la práctica",
+    teachingArticle: "Lee mi artículo sobre didáctica",
+    audioPlay: "Reproducir",
+    audioPause: "Pausar",
+    audioSeek: "Posición del audio",
+    audioMute: "Silenciar",
+    audioUnmute: "Activar sonido",
+    audioSpeed: "Velocidad de reproducción",
+    audioLoading: "Cargando audio…",
+    audioError: "Audio no disponible. Inténtalo de nuevo o abre el episodio.",
+    audioRetry: "Intentar reproducir de nuevo",
+    audioBack: "Retroceder 15 segundos",
+    audioForward: "Avanzar 15 segundos",
   },
 };
 
@@ -429,10 +541,16 @@ function setLanguage(value, persist = true) {
   // Keep the supplied store and product URLs: changing a domain does not guarantee the same edition exists there.
   selectedEdition = language === "pt-BR" ? "pt" : "en";
   const hero = books.story[selectedEdition];
-  document.getElementById("hero-cover").src = hero.cover;
-  document.getElementById("hero-cover").alt = hero.title;
-  document.getElementById("hero-secondary-cover").src =
-    books.story[selectedEdition === "pt" ? "en" : "pt"].cover;
+  window.BookMotion.replace(
+    document.getElementById("hero-cover"),
+    hero.cover,
+    hero.title,
+  );
+  window.BookMotion.replace(
+    document.getElementById("hero-secondary-cover"),
+    books.story[selectedEdition === "pt" ? "en" : "pt"].cover,
+    "",
+  );
   updateBook();
   renderFeed("github");
   renderFeed("podcast");
@@ -464,8 +582,7 @@ function updateBook() {
   document.getElementById("book-category").textContent = copy.category;
   document.getElementById("book-description").textContent = copy.description;
   const image = document.getElementById("book-cover-img");
-  image.src = edition.cover;
-  image.alt = edition.title;
+  window.BookMotion.replace(image, edition.cover, edition.title);
   document.getElementById("book-link").href = edition.url;
   document.getElementById("edition-note").textContent = t(
     selectedEdition === "pt"
@@ -519,11 +636,15 @@ function formatDate(value) {
       });
 }
 function renderFeed(kind) {
+  if (kind === "github") {
+    window.Portfolio?.render(feeds.github);
+    return;
+  }
   const container = document.getElementById(
     kind === "podcast" ? "podcast-carousel" : "github-projects",
   );
   const feed = feeds[kind];
-  // Preserve native player playback and keyboard focus when only UI language changes.
+  // Preserve custom player playback and keyboard focus when only UI language changes.
   if (
     kind === "podcast" &&
     feed.status === "ready" &&
@@ -583,67 +704,35 @@ function renderFeed(kind) {
     return;
   }
   for (const [index, item] of feed.items.entries()) {
-    if (kind === "github") {
-      const card = externalLink(item.url, "project-card");
-      const top = element("div", "project-top");
-      top.append(element("h3", null, item.name), element("span", null, "↗"));
-      card.append(
-        top,
-        element("p", null, item.description || t("noDescription")),
-      );
-      const meta = element("div", "project-meta");
-      if (item.language)
-        meta.append(
-          element("span", "language-dot"),
-          element("span", null, item.language),
-        );
-      const stars = element("span", "project-stars", "☆ " + item.stars);
-      stars.setAttribute("aria-label", item.stars + " " + t("stars"));
-      meta.append(stars);
-      card.append(meta);
-      container.append(card);
-    } else {
-      const card = element("article", "podcast-card"),
-        top = element("div", "episode-top");
-      if (item.image) {
-        const img = element("img");
-        img.src = item.image;
-        img.alt = "";
-        img.loading = "lazy";
-        img.width = 68;
-        img.height = 68;
-        img.addEventListener("error", () => img.remove(), { once: true });
-        top.append(img);
-      }
-      top.append(
-        element(
-          "span",
-          "episode-number",
-          String(index + 1).padStart(2, "0") + " / BYTES",
-        ),
-      );
-      const title = element("h3", null, item.title);
-      card.append(top, title);
-      const date = element("p", "episode-date", formatDate(item.date));
-      date.dataset.date = item.date;
-      card.append(date);
-      if (item.audio) {
-        const audio = element("audio");
-        audio.controls = true;
-        audio.preload = "none";
-        audio.src = item.audio;
-        audio.dataset.title = item.title;
-        audio.setAttribute("aria-label", t("audioLabel") + ": " + item.title);
-        audio.addEventListener("play", () =>
-          document.querySelectorAll("audio").forEach((other) => {
-            if (other !== audio) other.pause();
-          }),
-        );
-        card.append(audio);
-      }
-      card.append(externalLink(item.url, "episode-link", t("listen") + " ↗"));
-      container.append(card);
+    const card = element("article", "podcast-card"),
+      top = element("div", "episode-top");
+    if (item.image) {
+      const img = element("img");
+      img.src = item.image;
+      img.alt = "";
+      img.loading = "lazy";
+      img.width = 68;
+      img.height = 68;
+      img.addEventListener("error", () => img.remove(), { once: true });
+      top.append(img);
     }
+    top.append(
+      element(
+        "span",
+        "episode-number",
+        String(index + 1).padStart(2, "0") + " / BYTES",
+      ),
+    );
+    const title = element("h3", null, item.title);
+    card.append(top, title);
+    const date = element("p", "episode-date", formatDate(item.date));
+    date.dataset.date = item.date;
+    card.append(date);
+    if (item.audio) {
+      card.append(window.ImmersiveAudio.create(item, t));
+    }
+    card.append(externalLink(item.url, "episode-link", t("listen") + " ↗"));
+    container.append(card);
   }
   if (feed.updatedAt) {
     const notice = element(
@@ -669,7 +758,7 @@ function normalizeFeed(kind, data) {
           !repo.private &&
           safeURL(repo.html_url, ["github.com"]),
       )
-      .slice(0, 6)
+      .slice(0, 100)
       .map((repo) => ({
         name: String(repo.name || ""),
         description: String(repo.description || ""),

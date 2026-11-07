@@ -13,7 +13,10 @@
     progress = 0,
     frame = 0,
     layoutFrame = 0,
-    initialized = false;
+    initialized = false,
+    snapTimer = 0,
+    userScrolling = false,
+    pointerDown = false;
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
   const sceneLabel = (i) =>
     window.Website?.translations[window.Website.language][
@@ -53,7 +56,7 @@
         0,
         scenes.length - 1,
       );
-      track.style.transform = `translate3d(${-progress * innerWidth}px,0,0)`;
+      track.style.transform = `translate3d(${-progress * scenes[0].getBoundingClientRect().width}px,0,0)`;
     } else {
       const anchor = scrollY + innerHeight * 0.4;
       let index = 0;
@@ -79,13 +82,37 @@
       }),
     );
   }
+  function settleScroll() {
+    clearTimeout(snapTimer);
+    if (
+      !horizontal ||
+      !userScrolling ||
+      pointerDown ||
+      reduceMotion.matches ||
+      document.querySelector("dialog[open]")
+    )
+      return;
+    userScrolling = false;
+    const nearest = Math.round(
+      clamp((scrollY - journey.offsetTop) / innerHeight, 0, scenes.length - 1),
+    );
+    const target = journey.offsetTop + nearest * innerHeight;
+    if (Math.abs(scrollY - target) > 2) goTo(nearest);
+  }
   function schedule() {
     if (!frame) frame = requestAnimationFrame(update);
+    if (userScrolling) {
+      clearTimeout(snapTimer);
+      // Debounce also supports browsers without scrollend; inertia keeps resetting it.
+      snapTimer = setTimeout(settleScroll, 220);
+    }
   }
   function goTo(
     index,
     { smooth = true, focus = false, historyEntry = false } = {},
   ) {
+    userScrolling = false;
+    clearTimeout(snapTimer);
     index = clamp(index, 0, scenes.length - 1);
     if (historyEntry && location.hash !== "#" + scenes[index].id)
       history.pushState(null, "", "#" + scenes[index].id);
@@ -161,6 +188,14 @@
     .getElementById("next-scene")
     .addEventListener("click", () => goTo(current + 1, { historyEntry: true }));
   document.addEventListener("keydown", (event) => {
+    if (document.querySelector("dialog[open]")) return;
+    if (
+      ["PageDown", "PageUp", " ", "ArrowDown", "ArrowUp"].includes(event.key) &&
+      !event.target.closest(
+        "input,select,textarea,button,audio,video,[contenteditable]",
+      )
+    )
+      userScrolling = true;
     if (
       event.defaultPrevented ||
       event.altKey ||
@@ -187,7 +222,35 @@
       { focus: true, historyEntry: true },
     );
   });
-  // Native vertical wheel/trackpad/keyboard scrolling is never intercepted.
+  // Let native wheel / trackpad motion finish before aligning the nearest scene.
+  window.addEventListener(
+    "wheel",
+    () => {
+      if (document.querySelector("dialog[open]")) return;
+      userScrolling = true;
+      clearTimeout(snapTimer);
+      snapTimer = setTimeout(settleScroll, 220);
+    },
+    { passive: true },
+  );
+  window.addEventListener(
+    "pointerdown",
+    () => {
+      pointerDown = true;
+      clearTimeout(snapTimer);
+    },
+    { passive: true },
+  );
+  window.addEventListener(
+    "pointerup",
+    () => {
+      pointerDown = false;
+      if (userScrolling) snapTimer = setTimeout(settleScroll, 220);
+    },
+    { passive: true },
+  );
+  window.addEventListener("scrollend", settleScroll);
+  // No wheel prevention or scroll hijacking; anchors and controls use goTo directly.
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", scheduleLayout, { passive: true });
   window.addEventListener("hashchange", followHash);

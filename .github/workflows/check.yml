@@ -16,6 +16,5 @@ jobs:
       - name: Validate JavaScript and site contracts
         run: |
           node --check page.js
-          node --check js/scroll.js
-          node --check js/scene3d.js
-          node --test tests/site.test.cjs
+          for file in js/*.js; do node --check "$file"; done
+          node --test tests/*.test.cjs
