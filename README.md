@@ -7,8 +7,8 @@ Official personal website: books, biography, Bytes Estratégicos, an interactive
 - Neutral black, yellow `#ffc002`, locally hosted Poppins and six scenes.
 - On wide, fine-pointer screens (at least 1100 × 760), native vertical scrolling moves a horizontal track. After native wheel/trackpad or keyboard scrolling ends, the nearest scene snaps into place. `scrollend` and a debounced fallback support different browsers; input is never prevented. Navigation links, URL fragments, previous/next buttons, arrow keys and history address the same sections. Track translation uses the actual panel width, including scrollbar gutters.
 - Mobile, touch devices, shorter screens, oversized content and reduced-motion preferences use a normal vertical document. Browser zoom can trigger the same readable fallback. Vertical layouts use proximity snap, so tall sections remain readable; reduced motion disables snapping.
-- Local Three.js 0.169.0 adds textured books with covers, a spine and pages, a hexagon network, chart bars and 24/72 subtle particles on mobile/desktop. Book changes use separate outgoing and incoming volumes, retaining both textures during the handoff. The scene follows scroll progress, responds to the pointer, pauses in hidden tabs and while a demo is open, and uses a capped pixel ratio and frame rate. Mobile orientation is opt-in on supported secure devices.
-- CSS book covers remain available when WebGL is unavailable, initialization fails, a texture fails or the context is lost. CSS fallback also animates separate outgoing and incoming books. Rapid selections ignore stale image loads. Reduced motion disables these transitions and skips Three.js initialization entirely.
+- Local Three.js 0.169.0 adds textured books with covers, a spine and pages, a hexagon network and chart bars. A shared Canvas 2D atmosphere adds 36/96 soft dust particles on mobile/desktop and CSS light shafts, including when WebGL is unavailable. Book changes use separate outgoing and incoming volumes, retaining both textures during the handoff. Scene exits use continuous opacity curves and time-based easing, including fast scroll/anchor jumps. Book anchors are independent of the departing HTML panel, so books recede and fade in place instead of slipping off-screen. The scene follows scroll progress, responds to the pointer, pauses in hidden tabs and while a demo is open, and uses a capped pixel ratio and frame rate. Mobile orientation is opt-in on supported secure devices.
+- CSS book covers remain available when WebGL is unavailable, initialization fails, a texture fails or the context is lost. CSS fallback also animates separate outgoing and incoming books over 1.15 seconds and fades book stages near scene/viewport boundaries. Rapid selections ignore stale image loads. Reduced motion disables these transitions and skips Three.js initialization entirely.
 - PT/EN/ES UI strings, persistent language choice and `?locale=pt-BR`, `?locale=en`, `?locale=es` links. Book edition is a separate choice. Spanish UI explicitly identifies the English edition; no Spanish book edition is implied.
 - Podcast uses custom, keyboard-accessible controls: play/pause, ±15 seconds, seek, mute and playback speed. Audio has no native controls, no preloading or autoplay, and only one episode plays at a time. Loading, timeout and retry states are localized; changing the UI language preserves playback.
 - The curated lab contains all eight requested public repositories, four cards per page, with code links and star counts. Demos load in a sandboxed dialog only after a click. Closing removes the iframe to stop audio and computation and restores scroll/focus. A separate-tab link remains available if an embed cannot load. Original demo languages and educational context are identified.
@@ -26,6 +26,8 @@ Official personal website: books, biography, Bytes Estratégicos, an interactive
 | `js/audio-player.js`  | Custom media controls and playback coordination                           |
 | `js/book-motion.js`   | CSS book transitions and stale image-load protection                      |
 | `js/portfolio.js`     | Curated demonstrations, pagination and modal lifecycle                    |
+| `js/atmosphere.js`    | Shared dust, lighting movement and fallback book-stage fades              |
+| `js/scene-motion.js`  | Continuous scene opacity, time easing and stable book anchors             |
 | `js/scene3d.js`       | Optional Three.js background and lifecycle                                |
 | `js/vendor/`          | Pinned Three.js module and its MIT license                                |
 | `assets/`             | Local WOFF fonts, WebP images, favicon, Open Graph image and font license |
@@ -67,7 +69,7 @@ The GitHub Actions check runs these commands on pull requests and pushes to `mai
 
 ## Preview
 
-![Homepage with CSS book fallback](docs/screenshots/home-20261107.jpg)
+![Homepage with atmospheric light, dust and CSS book fallback](docs/screenshots/atmosphere-20261107.jpg)
 
 ![Custom podcast player](docs/screenshots/player-20261107.jpg)
 
@@ -76,6 +78,12 @@ The GitHub Actions check runs these commands on pull requests and pushes to `mai
 Automated checks cover locale variants, complete translated UI labels, the four ASIN mappings, asset paths, unsafe URL rejection, external text handling, malformed API responses, bundled snapshots and third-party licenses. Regression tests also cover single-episode playback, bounded seeking, rejected or stalled play requests, cancellation races, late cover loads and all eight demo entry paths. Browser QA covers desktop wheel snap, edition transitions, real podcast playback/speed/episode switching, PT/EN/ES, modal execution and mobile/tablet layouts. The original Simply Similar example returned 52.63% inside the dialog. All eight public demo entry URLs returned HTTP 200 without frame restrictions on 7 November 2026.
 
 The cloud QA browser disables WebGL. The actual GPU rendering, hardware frame rate and phone gyroscope therefore require a WebGL-enabled browser/device check; CSS fallback was directly observed. No Lighthouse score or real-device performance result is claimed. External audio playback also depends on the podcast hosting service and browser codec support.
+
+## Atmosphere and fade behavior
+
+The ambient shafts use feathered gradients and haze for a volumetric-light appearance, without a ray-marching/postprocessing pass. Dust uses one cached glow sprite, three depth layers, a capped pixel ratio and 20/30 FPS mobile/desktop limits. Both light movement and dust pause when the tab is hidden or a demo is open. Reduced motion keeps a static light/dust composition with fewer particles and disables book-stage fading.
+
+`js/scene-motion.js` contains easing shared with the scene. Regression checks cover continuous opacity at the previous cut points, complete fade-out/return, fast navigation, equivalent results at different frame rates, and stable anchors across panel widths. GPU rendering still needs a WebGL-enabled device check; the cloud browser can inspect the independent atmosphere and CSS book fades directly.
 
 ## Public sources and demo entry points
 

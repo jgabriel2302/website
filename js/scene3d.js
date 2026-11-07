@@ -1,3 +1,10 @@
+import {
+  bookPresence,
+  secondaryPresence,
+  follow,
+  sceneAnchorX,
+  smoothRange,
+} from "./scene-motion.js";
 // Progressive enhancement: readable HTML and CSS book covers work without WebGL.
 const canvas = document.getElementById("scene-canvas");
 const root = document.documentElement;
@@ -165,27 +172,6 @@ async function createScene(THREE) {
     });
     exchange = { start: elapsed, changed };
   }
-  const particleCount = mobile ? 24 : 72;
-  const particlePositions = new Float32Array(particleCount * 3);
-  for (let i = 0; i < particleCount; i++) {
-    particlePositions[i * 3] = Math.sin(i * 127.1) * 9;
-    particlePositions[i * 3 + 1] = Math.sin(i * 311.7) * 5;
-    particlePositions[i * 3 + 2] = -1 - (i % 7);
-  }
-  const particleGeometry = new THREE.BufferGeometry();
-  particleGeometry.setAttribute(
-    "position",
-    new THREE.BufferAttribute(particlePositions, 3),
-  );
-  const particleMaterial = new THREE.PointsMaterial({
-    color: 0xffc002,
-    size: 0.022,
-    transparent: true,
-    opacity: 0.28,
-    depthWrite: false,
-  });
-  const particles = new THREE.Points(particleGeometry, particleMaterial);
-  scene.add(particles);
   const hexGroup = new THREE.Group();
   scene.add(hexGroup);
   const hexMaterial = new THREE.LineBasicMaterial({
@@ -292,11 +278,11 @@ async function createScene(THREE) {
       rotation.y + pointer.x * 0.08,
       rotation.z,
     );
-    group.visible = alpha > 0.005;
+    group.visible = alpha > 0;
     group.userData.materials.forEach((material) => {
-      material.transparent = alpha < 1;
+      material.transparent = true;
       material.opacity = alpha;
-      material.depthWrite = alpha > 0.9;
+      material.depthWrite = false;
     });
   }
   function placeExchangingBook(index, bx, by, height, depth, turn, opacity) {
@@ -305,11 +291,11 @@ async function createScene(THREE) {
       outgoingBooks[index].visible = false;
       return;
     }
-    const t = Math.min(1, (elapsed - exchange.start) / 0.95);
-    const out = 1 - Math.pow(1 - t, 3);
+    const t = Math.min(1, (elapsed - exchange.start) / 1.15);
+    const out = smoothRange(t, 0, 1);
     const into = Math.max(0, (t - 0.12) / 0.88);
-    const incoming = 1 - Math.pow(1 - into, 3);
-    const distance = Math.max(160, height * 0.65);
+    const incoming = smoothRange(into, 0, 1);
+    const distance = Math.max(110, height * 0.4);
     positionBook(
       outgoingBooks[index],
       bx - distance * out,
@@ -332,6 +318,7 @@ async function createScene(THREE) {
       opacity * incoming,
     );
   }
+  let sceneOpacity = bookPresence(progress) * (horizontal ? 1 : 0.15);
   const lerp = THREE.MathUtils.lerp;
   function render(timestamp) {
     raf = 0;
@@ -342,7 +329,7 @@ async function createScene(THREE) {
     const delta = Math.min((timestamp - last) / 1000, 0.05);
     last = timestamp;
     elapsed += delta;
-    if (exchange && elapsed - exchange.start >= 0.95) {
+    if (exchange && elapsed - exchange.start >= 1.15) {
       exchange = null;
       outgoingBooks.forEach((group) => {
         group.visible = false;
@@ -359,13 +346,18 @@ async function createScene(THREE) {
     const detail = document
       .querySelector(".detail-book-stage")
       .getBoundingClientRect();
+    const panelWidth = document
+      .querySelector(".scene")
+      .getBoundingClientRect().width;
+    const heroX = horizontal
+      ? sceneAnchorX(hero.left + hero.width * 0.44, progress, 0, panelWidth)
+      : hero.left + hero.width * 0.44;
+    const detailX = horizontal
+      ? sceneAnchorX(detail.left + detail.width * 0.5, progress, 1, panelWidth)
+      : detail.left + detail.width * 0.5;
     const blend = THREE.MathUtils.smoothstep(progress, 0, 1);
     const heroHeight = Math.min(hero.height * 0.7, innerHeight * 0.48);
-    let x = lerp(
-      hero.left + hero.width * 0.44,
-      detail.left + detail.width * 0.5,
-      blend,
-    );
+    let x = lerp(heroX, detailX, blend);
     let y = lerp(
       hero.top + hero.height * 0.45,
       detail.top + detail.height * 0.5,
@@ -376,22 +368,21 @@ async function createScene(THREE) {
         Math.min(detail.height * 0.78, innerHeight * 0.49),
         blend,
       ),
-      alpha = 1;
+      alpha;
     if (progress > 1) {
       const away = THREE.MathUtils.smoothstep(progress, 1, 2);
-      x = lerp(detail.left + detail.width * 0.5, innerWidth * 0.85, away);
+      x = lerp(detailX, innerWidth * 0.85, away);
       y = lerp(detail.top + detail.height * 0.5, innerHeight * 0.47, away);
       size = lerp(size, innerHeight * 0.22, away);
-      alpha = lerp(1, 0.09, away);
-      if (progress > 2)
-        alpha = progress < 4 ? 0.025 : lerp(0.025, 0.16, progress - 4);
     }
     if (!horizontal) {
       x = innerWidth * 0.85;
       y = innerHeight * 0.38;
       size = innerHeight * 0.21;
-      alpha = 0.15;
     }
+    const targetOpacity = bookPresence(progress) * (horizontal ? 1 : 0.15);
+    sceneOpacity = follow(sceneOpacity, targetOpacity, delta);
+    alpha = sceneOpacity;
     const float = Math.sin(elapsed * 0.5) * 4;
     const rotation = {
       y: -0.24 + Math.sin(elapsed * 0.22) * 0.08 + (hovered ? 0.08 : 0),
@@ -414,7 +405,7 @@ async function createScene(THREE) {
       size * 0.76,
       -0.35,
       { y: -0.34, z: 0.16 },
-      alpha * (progress < 0.8 ? 0.68 : 0.22),
+      alpha * secondaryPresence(progress),
     );
     if (books.length > 2) {
       positionBook(
@@ -447,14 +438,6 @@ async function createScene(THREE) {
         bar.userData.height * (0.8 + Math.sin(elapsed * 0.8 + i * 0.8) * 0.2);
       bar.position.y = bar.scale.y / 2;
     });
-    particles.rotation.y = Math.sin(elapsed * 0.025) * 0.12;
-    particles.position.y = Math.sin(elapsed * 0.15) * 0.2;
-    particleMaterial.opacity =
-      0.22 +
-      (exchange
-        ? Math.sin(Math.PI * Math.min(1, (elapsed - exchange.start) / 0.95)) *
-          0.18
-        : 0);
     renderer.render(scene, camera);
   }
   function run() {
@@ -470,7 +453,11 @@ async function createScene(THREE) {
   function onProgress(event) {
     progress = event.detail.progress;
     horizontal = event.detail.horizontal;
-    canvas.style.filter = progress > 1.6 && progress < 2.5 ? "blur(3px)" : "";
+    const blur =
+      2.5 *
+      smoothRange(progress, 1.25, 1.9) *
+      (1 - smoothRange(progress, 2.1, 2.8));
+    canvas.style.filter = blur > 0.01 ? `blur(${blur.toFixed(2)}px)` : "";
     updateCover();
   }
   listen(window, "sceneprogress", onProgress);
@@ -529,7 +516,7 @@ async function createScene(THREE) {
     motionButton.hidden = false;
     listen(motionButton, "click", async () => {
       if (enabledMotion) {
-        ((enabledMotion = false), (demoOpen = false));
+        enabledMotion = false;
         pointer.set(0, 0);
         motionButton.setAttribute("aria-pressed", "false");
         syncMotionLabel();
@@ -576,8 +563,6 @@ async function createScene(THREE) {
     hexMaterial.dispose();
     barGeometry.dispose();
     barMaterial.dispose();
-    particleGeometry.dispose();
-    particleMaterial.dispose();
     paperTexture.dispose();
     textures.forEach((promise) =>
       promise.then((map) => map.dispose()).catch(() => {}),
